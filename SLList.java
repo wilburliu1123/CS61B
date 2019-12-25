@@ -1,7 +1,9 @@
 public class SLList{
   public IntNode first;
+  private int size;
   public SLList(int x){
     first = new IntNode(x, null);
+    size = 1;
   }
   private class IntNode {
     public int item;
@@ -15,7 +17,7 @@ public class SLList{
   /** Adds x to the front of the list. */
   public void addFirst(int x) {
     first = new IntNode(x, first);
-
+    size += 1;
   }
   /** Returns the first item in the list */
   public int getFirst() {
@@ -23,6 +25,7 @@ public class SLList{
   }
   /** Returns the last item in the list */
   public int getLast() {
+    size += 1;
     IntNode p = first;
     while (p.next != null) {
       p = p.next;
@@ -52,6 +55,7 @@ public class SLList{
     first = frontofReversed;
 }
   public void insert(int x, int pos) {
+    size += 1;
       if (pos == 0) {
         addFirst(x);
         return;
@@ -71,7 +75,7 @@ public class SLList{
       L.addLast(20);
       L.insert(25,3);
       L.reverse();
-      System.out.println(L.getFirst());
+      System.out.println(L.size());
 
   }
   /** Adds an item to the end of the list. */
@@ -82,14 +86,8 @@ public class SLList{
     }
     p.next = new IntNode(x, null);
   }
-  /** Return the size of the list that starts at IntNode p. */
-  private static int size(IntNode p) {
-    if (p.next == null) {
-      return 1;
-    }
-    return 1 + size(p.next);
-  }
+
   public int size() {
-    return size(first);
+    return size;
   }
 }
